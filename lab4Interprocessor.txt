@@ -1,0 +1,20 @@
+CMPE 127 Lab 4 Optional Lab on Interprocessor Communications (5 bonus points) 
+Design and build an interprocessor communication demo system using your LPC1769 
+board as a host and another micro-processor system as a client. You can either use 
+LPC1769 CPU module, or Arduino as a client. Your design and prototype system will 
+have to realize the following functions: 
+1. Use LPC1769 as a host and UART as communication protocol (or you can use MAX485
+to build RS485 interface between two systems) to establish handshaking by sending
+the following message to the client: SJSU_CMPE127_YourName_YourID. Then the client 
+will capture this message and print it on its console. 
+   
+2. Then the client will send the following message to the host as an acknowledgement: 
+SJSU_CMPE127_YourName_YourID_Client. The host will then capture this message and 
+print it on its console. 
+
+3. Have lab report ready when doing the lab demo, demo without the report will only 
+give your partial credit. 
+
+4. The rubrics for this lab is the same as in lab 1 through 3, which has been posted 
+since lab 1 assignment.
+(END) 
