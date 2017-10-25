@@ -1,0 +1,67 @@
+CMPE 127 Review
+HL 
+
+1.Board Layout and Power Circuit Design
+1.1 Block diagram for the entire system layout, be sure to provide detailed pin functional names (label); 
+1.2 Power circuit design using 7805 with current regulating resistor and red LED, the calculation of resistance value based on current limit requirements, for example, current of 8 mA to light up LED.  
+
+2. GPP Port Interface Design
+2.1 Identify the number of GPP ports on the CPU module using the schematics of the CPU module document; 
+2.2 Cross reference from the physical pin numbers on the CPU module (for example connector J2) to the CPU data sheets (such as pin p0.x), and then conduct hardware design tasks, GPP input and output testing circuit;
+2.3 Find the sample code for GPP Port init & config; 
+2.4 Identify the SPRs and understand their functions within the scope of CPU archieture and software 
+compiler; 
+ 
+FIODIR
+FIOSET 
+FIOCLR
+
+2.5 To be able to understand how the software compiler map the special purpose registers, such as
+   
+LPC_GPIO0->FIODIR |= (1 << pinNum);
+LPC_GPIO0->FIOSET = (1 << pinNum)
+LPC_GPIO0->FIOCLR = (1 << pinNum);
+
+2.6 To be able to find CPU datasheet description of these SPRs and able to define init & config pattern 
+
+3. To be able to use IDE tool
+3.1 to be able to modify init & config program, such as 
+
+void GPIOinitOut(uint8_t portNum, uint32_t pinNum)
+void setGPIO(uint8_t portNum, uint32_t pinNum)
+void clearGPIO(uint8_t portNum, uint32_t pinNum)
+
+
+4. System Architectural Level Description 
+4.1 CPU Architecture and Memory Map, and Peripherial Controllers 
+4.2 Address calculations
+
+
+5. SPI Protocol 
+5.1 3+1 pins 
+5.2 Opcode + Address + Payload (data) and waveform (note Endian, LSM out first etc.) 
+5.3 Hardware design, pins on the CPU module and their functions (use SCH); 
+5.4 CPU SPI Controller and their special purpose registers 
+
+LPC_SC->PCONP |= (1<<10);
+LPC_SC->PCLKSEL0 &= ~(3<<20); 
+LPC_GPIO0->FIODIR |= (1<<6);
+LPC_GPIO0->FIOSET = (1<<6);
+LPC_PINCON->PINSEL0 &= ~((3<<18)|(3<<16)|(3<<14));
+LPC_SSP1->CR0 = 0x07;
+LPC_SSP1->CR1 = 0x2;  (optional)
+LPC_SSP1->CPSR = 8;   (optional) 
+
+void initSSP1(void) 
+uint8_t SSP1exchangeByte(uint8_t out) 
+
+5.5 SPI Flash Memory hardware pin interface to CPU SPI pins
+5.6 SPI Flash Archiecture
+5.7 SPI Flash SPI protocol waveforms (Read buffer, write buffer, read memory, write memory) 
+5.8 Sending "SJSU CMPE127) draw its waveform for debugging purpose 
+5.9 bit rate evaluatioin and calculation, such as for storing video, digital photos, or audio, sensor data etc. 
+
+
+
+(END)  
+
